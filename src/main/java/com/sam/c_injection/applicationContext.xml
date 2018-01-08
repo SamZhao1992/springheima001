@@ -5,8 +5,10 @@
 
     <!--set 方式注入-->
     <bean id="user" name="user" class="com.sam.bean.User" scope="singleton">
+        <!--值类型 注入-->
         <property name="name" value="samzhao"/>
         <property name="age" value="25"/>
+        <!--引用类型注入-->
         <property name="car" ref="car" />
     </bean>
 
