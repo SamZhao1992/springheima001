@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--set 方式注入-->
@@ -16,6 +17,63 @@
     <bean id="car" name="car" class="com.sam.bean.Car">
         <property name="name" value="Benz" />
         <property name="color" value="Black" />
+    </bean>
+
+    <bean id="user1" name="user1" class="com.sam.bean.User" >
+        <constructor-arg name="name" value="111" index="0" type="java.lang.Integer"/>
+        <constructor-arg name="car" ref="car" />
+    </bean>
+
+    <!--    P名称空间注入
+        1.导入P名称空间       xmlns:p="http://www.springframework.org/schema/p"
+        2.使用P：属性完成注入
+            p:属性名
+            p:属性名引用
+    -->
+    <bean id="user2" name="user2" class="com.sam.bean.User" p:name="Jack" p:age="18" p:car-ref="car"/>
+
+    <!--
+        SpEL注入 spring expression language : Spring 表达式语言
+    -->
+    <bean id="user3" name="user3" class="com.sam.bean.User" >
+        <property name="name" value="#{user.name}" />
+        <property name="age" value="#{user.age}" />
+        <property name="car" ref="car" />
+    </bean>
+
+    <!--复杂类型注入-->
+    <!--array 数组注入-->
+    <bean class="com.sam.c_injection.CollectionBean" name="collectionBean" id="collectionBean" >
+        <!--如果数组中只准备注入一个值，直接使用value|ref即可-->
+        <!--<property name="arr" value=""></property>-->
+        <property name="arr" >
+            <array>
+                <value>tom</value>
+                <value>jerry</value>
+                <ref bean="user3"></ref>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <ref bean="user2"></ref>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="a1" value-ref="user"></entry>
+                <entry key="a2" value-ref="user1"></entry>
+                <entry key-ref="car" value-ref="user2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="ppp1" >com.jdbc.mysql</prop>
+                <prop key="ppp2" >root</prop>
+                <prop key="ppp3" >111222333</prop>
+            </props>
+        </property>
     </bean>
 
 </beans>

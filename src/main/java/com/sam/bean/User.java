@@ -31,6 +31,24 @@ public class User {
         System.out.println("user created...");
     }
 
+    public User(String name, Car car) {
+        System.out.println("User(String name, Car car)...");
+        this.name = name;
+        this.car = car;
+    }
+
+    public User(Integer name, Car car) {
+        System.out.println("User(String name, Car car)...");
+        this.age = name;
+        this.car = car;
+    }
+
+    public User(Car car, String name) {
+        System.out.println("User(Car car, String name)...");
+        this.name = name;
+        this.car = car;
+    }
+
     @Override
     public String toString() {
         return "User{" +
