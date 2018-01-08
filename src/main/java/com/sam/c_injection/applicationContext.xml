@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--set 方式注入-->
+    <bean id="user" name="user" class="com.sam.bean.User" scope="singleton">
+        <property name="name" value="samzhao"/>
+        <property name="age" value="25"/>
+        <property name="car" ref="car" />
+    </bean>
+
+    <!--将Car对象配置到容器中-->
+    <bean id="car" name="car" class="com.sam.bean.Car">
+        <property name="name" value="Benz" />
+        <property name="color" value="Black" />
+    </bean>
+
+</beans>

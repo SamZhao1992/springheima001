@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--将User对象交给spring容器管理-->
+    <!--
+        Bean元素 ： 使用该元素描述需要Spring容器管理的对象
+            name属性：给被管理的对象取个名字，获得对象时根据该名称获取对象   名称能重复 能使用特殊字符
+            class属性：被管理对象的完整类名
+            id属性：与name属性一模一样                                     名称不能重复 不能使用特殊字符
+
+            结论：尽量使用name属性
+
+            scope属性：
+            init-method属性：
+            destroy-method属性：
+
+    -->
+    <bean id="user" name="user" class="com.sam.bean.User" scope="singleton" />
+
+</beans>

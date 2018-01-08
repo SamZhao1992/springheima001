@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--创建方式1：空参构造-->
+    <bean id="user" name="user" class="com.sam.bean.User" scope="singleton"/>
+    <!--创建方式2：静态工厂创建 调用factory-method 用createUser 方法创建-->
+    <bean id="userFactory" name="userFactory" class="com.sam.b_create.UserFactory" factory-method="createUser"/>
+
+    <!--创建方式3：实例工厂创建 调用factory-bean中对应的factory-method 方法创建-->
+    <bean id="userFactory1" name="userFactory1" class="com.sam.b_create.UserFactory"/>
+    <bean id="user1" name="user1" factory-method="createUser2" factory-bean="userFactory1"/>
+
+    <!--多例-->
+    <bean id="user2" name="user2" class="com.sam.bean.User" scope="prototype" init-method="init" destroy-method="destroy"/>
+
+    <!--导入其他spring配置文件-->
+    <import resource="applicationContext1.xml"/>
+</beans>
